@@ -32,7 +32,7 @@
 
     def render
       DIV do
-        "Helloworld"
+        H1 {"Helloworld - #{User.current.email}"}
       end
     end
   end
