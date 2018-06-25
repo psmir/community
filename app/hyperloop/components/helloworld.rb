@@ -31,7 +31,7 @@
     end
 
     def render
-      DIV do
+      DIV(class: 'alert alert-info') do
         H1 {"Helloworld - #{User.current.email}"}
       end
     end
