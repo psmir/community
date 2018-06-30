@@ -1,4 +1,4 @@
-  class Helloworld < Hyperloop::Component
+  class PostList < Hyperloop::Component
 
     render(SECTION) do
       UL do
