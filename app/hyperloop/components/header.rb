@@ -10,12 +10,10 @@ class Header < Hyperloop::Component
             if UserStore.current.present?
               A(class: 'nav-link', href: '#'){ "Logout #{UserStore.current.email}" }.on(:click) do |event|
                 event.prevent_default
-                LogOut.run.fail do |e|
+                LogOutOp.run.fail do |e|
                   puts e.message
                 end
               end
-            else
-              A(class: 'nav-link', href: '#') { "Login" }
             end
           end
         end

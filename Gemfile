@@ -38,8 +38,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 ####################################
 gem 'hyperloop', '~> 0.5.8'
-gem 'devise', '~> 4.4.3'
 gem 'webpacker', '~> 3.5.3'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.5.0'

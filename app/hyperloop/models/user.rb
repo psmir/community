@@ -1,13 +1,13 @@
 class User < ApplicationRecord
+  has_secure_password
   has_many :posts
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable unless RUBY_ENGINE == 'opal'
+  validates_presence_of :email
+  validates_uniqueness_of :email
+  validates_presence_of :username
 
-  # def self.current
-  #   Hyperloop::Application.acting_user_id ? find(Hyperloop::Application.acting_user_id) : User.new
-  # end
+  def self.current
+    Hyperloop::Application.acting_user_id ? find(Hyperloop::Application.acting_user_id) : nil
+  end
 
 end
