@@ -23,7 +23,7 @@ class LogIn < Hyperloop::Component
         end
       end
 
-      BUTTON(class: 'btn btn-primary') { 'Log In' }
+      BUTTON(class: 'btn btn-primary') { 'Log In!!!' }
 
     end.on(:submit) do |evt|
       evt.prevent_default

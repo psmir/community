@@ -55,6 +55,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', require: false
   gem 'spring-watcher-listen', '~> 2.0.0', require: false
+  gem 'opal_hot_reloader', git: 'https://github.com/fkchang/opal-hot-reloader.git'
+  gem 'foreman'
 end
 
 
