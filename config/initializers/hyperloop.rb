@@ -4,6 +4,7 @@ Hyperloop.configuration do |config|
   helper = Webpacker::Helper
   config.transport = :action_cable
   config.import 'reactrb/auto-import'
+  config.console_auto_start = false
   config.import File.basename(Webpacker.manifest.lookup!('client_and_server.js'))
 end
 
