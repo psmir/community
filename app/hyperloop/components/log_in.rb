@@ -1,36 +1,21 @@
 class LogIn < Hyperloop::Component
-  state email: ''
-  state password: ''
-  state errors: []
+  include FormCommon
+
+  before_mount do
+    self.store = FormStore.create!
+  end
 
   render(DIV) do
-    UL do
-      state.errors.each do |err|
-        LI{ err }
-      end
-    end
-
     FORM do
-      DIV(class: 'form-group') do
-        INPUT(placeholder: 'Email', value: state.email).on(:change) do |e|
-          mutate.email e.target.value
-        end
-      end
+      BaseErrors(store: store) if store.has_base_errors?
 
-      DIV(class: 'form-group') do
-        INPUT(placeholder: 'Password', value: state.password).on(:change) do |e|
-          mutate.password e.target.value
-        end
-      end
+      TextInput(name: 'email', placeholder: 'Email', store: store)
+      TextInput(name: 'password', placeholder: 'Password', store: store)
 
-      BUTTON(class: 'btn btn-primary') { 'Log In!!!' }
-
+      BUTTON(class: 'btn btn-primary') { 'Sign In' }
     end.on(:submit) do |evt|
       evt.prevent_default
-      LogInOp.run(email: state.email, password: state.password)
-      .fail do |e|
-        mutate.errors e.message.split('; ')
-      end
+      LogInOp.run(store.fields).fail { |e| store_errors! e }
     end
   end
 end

@@ -4,7 +4,7 @@
       Header()
       DIV(class: 'container') do
         unless UserStore.current
-          DIV(class: 'row') do
+          DIV(class: 'row mt-5') do
             DIV(class: 'col-md-4 offset-md-2') do
               LogIn()
             end

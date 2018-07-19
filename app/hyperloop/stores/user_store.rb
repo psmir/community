@@ -11,7 +11,7 @@ class UserStore < Hyperloop::Store
   end
 
 
-  receives LogInOp do
+  receives AuthOp do
     set_current_by_id! params.user_id
   end
 
