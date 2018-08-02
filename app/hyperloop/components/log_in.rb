@@ -14,7 +14,7 @@ class LogIn < Hyperloop::Component
           BaseErrors(store: store) if store.has_base_errors?
 
           TextInput(name: 'email', placeholder: 'Email', store: store)
-          TextInput(name: 'password', placeholder: 'Password', store: store)
+          PasswordInput(name: 'password', placeholder: 'Password', store: store)
 
           BUTTON(class: 'btn btn-primary') { 'Sign In' }
         end.on(:submit) do |evt|

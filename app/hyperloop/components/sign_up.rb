@@ -15,8 +15,8 @@ class SignUp < Hyperloop::Component
 
           TextInput(name: 'username', placeholder: 'Username', store: store)
           TextInput(name: 'email', placeholder: 'Email', store: store)
-          TextInput(name: 'password', placeholder: 'Password', store: store)
-          TextInput(name: 'password_confirmation', placeholder: 'Password Confirmation', store: store)
+          PasswordInput(name: 'password', placeholder: 'Password', store: store)
+          PasswordInput(name: 'password_confirmation', placeholder: 'Password Confirmation', store: store)
 
           BUTTON(class: 'btn btn-primary') { 'SIGN UP' }
         end.on(:submit) do |evt|
