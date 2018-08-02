@@ -1,18 +1,11 @@
-  class App < Hyperloop::Component
+  class App < Hyperloop::Router
+    history :browser
 
-    render(DIV) do
-      Header()
-      DIV(class: 'container') do
-        unless UserStore.current
-          DIV(class: 'row mt-5') do
-            DIV(class: 'col-md-4 offset-md-2') do
-              LogIn()
-            end
-            DIV(class: 'col-md-4') do
-              SignUp()
-            end
-          end
-        end
+    route do
+      DIV do
+        Route('/', mounts: Header)
+        Route('/sign_in', mounts: LogIn)
+        Route('/sign_up', mounts: SignUp)
       end
     end
   end

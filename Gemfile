@@ -36,7 +36,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 ####################################
-gem 'hyperloop', '~> 0.5.8'
+#gem 'hyperloop', '~> 0.5.8'
+#gem 'hyperloop', git: 'https://github.com/ruby-hyperloop/hyperloop.git', ref: '57d30ff'
+gem "opal-jquery", git: "https://github.com/opal/opal-jquery.git", branch: "master"
+
+gem 'hyperloop', '~> 1.0.0.lap00'
 gem 'webpacker', '~> 3.5.3'
 gem 'bcrypt'
 
@@ -44,7 +48,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.5.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'hyper-console', '~> 0.1.4'
+  #gem 'hyper-console', '~> 0.1.4'
 end
 
 group :development do

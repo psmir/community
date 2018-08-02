@@ -5,7 +5,7 @@ Hyperloop.configuration do |config|
   config.transport = :action_cable
   config.import 'reactrb/auto-import'
   config.import 'opal_hot_reloader'
-  config.console_auto_start = false
+  #config.console_auto_start = false
   config.import File.basename(Webpacker.manifest.lookup!('client_and_server.js'))
 end
 
