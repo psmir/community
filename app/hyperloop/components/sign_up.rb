@@ -1,4 +1,4 @@
-class SignUp < Hyperloop::Component
+class SignUp < Hyperloop::Router::Component
   include FormCommon
 
   collect_other_params_as :attributes
@@ -21,7 +21,9 @@ class SignUp < Hyperloop::Component
           BUTTON(class: 'btn btn-primary') { 'SIGN UP' }
         end.on(:submit) do |evt|
           evt.prevent_default
-          SignUpOp.run(store.fields).fail { |e| store_errors!(e) }
+          SignUpOp.run(store.fields)
+          .then { params.history.push('/') }
+          .fail { |e| store_errors!(e) }
         end
       end
     end
