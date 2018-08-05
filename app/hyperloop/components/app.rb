@@ -11,6 +11,8 @@
         Route('/', mounts: Header)
         Route('/sign_in', mounts: LogIn)
         Route('/sign_up', mounts: SignUp)
+        Route('/my_blog', mounts: MyBlog)
+        Footer()
       end
     end
   end

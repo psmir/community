@@ -9,6 +9,10 @@ class Header < Hyperloop::Router::Component
         UL(class: 'nav navbar-nav ml-auto') do
           if UserStore.current.present?
             LI(class: 'nav-item') do
+              Link('/my_blog', class: 'nav-link') { 'My Blog' }
+            end
+
+            LI(class: 'nav-item') do
               A(class: 'nav-link', href: '#'){ "Logout #{UserStore.current.email}" }.on(:click) do |event|
                 event.prevent_default
                 LogOutOp.run.fail do |e|
