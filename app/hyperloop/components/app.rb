@@ -9,6 +9,7 @@
     route do
       DIV do
         Route('/', mounts: Header)
+        Route('/', exact: true, mounts: Landing)
         Route('/sign_in', mounts: LogIn)
         Route('/sign_up', mounts: SignUp)
         Route('/my_blog', mounts: MyBlog)

@@ -15,9 +15,10 @@ class Header < Hyperloop::Router::Component
             LI(class: 'nav-item') do
               A(class: 'nav-link', href: '#'){ "Logout #{UserStore.current.email}" }.on(:click) do |event|
                 event.prevent_default
-                LogOutOp.run.fail do |e|
-                  puts e.message
-                end
+                LogOutOp.run
+                .then { params.history.push('/') }
+                .fail { puts e.message}
+
               end
             end
           else

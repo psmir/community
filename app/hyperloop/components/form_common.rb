@@ -12,6 +12,8 @@ module FormCommon
       e.errors.message
     elsif e.is_a? Hyperloop::Operation::Exit
       e.result.try(:errors)
+    elsif e.is_a? ApplicationRecord
+      e.errors.messages
     else
       { base: e.try(:message) }
     end

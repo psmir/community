@@ -21,11 +21,14 @@ class FormStore < Hyperloop::Store
 
   # can receive { 'some_field' => 'error' }
   # or { 'some_field' => ['error1', 'error2'] }
-  #
+  # or from client side model save {"some_field"=>[{"message"=>"can't be blank"}] }
+
   def update_errors!(h = {})
     mutate.errors({})
     h.each do |k, v|
-      v = v.join('; ') if v.is_a? Array
+      if v.is_a? Array
+        v = v.map{|i| i.is_a?(Hash) ? i.values.first : i  }.uniq.join('; ')
+      end
       mutate.errors.merge!(k => v)
     end
   end
