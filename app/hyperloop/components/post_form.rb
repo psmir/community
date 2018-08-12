@@ -2,7 +2,7 @@ class PostForm < Hyperloop::Component
   include FormCommon
 
   param :post
-  param :on_cancel, type: Proc
+  param :on_finish, type: Proc
 
   before_mount do
     self.store = FormStore.create!(title: params.post.title, body: params.post.body)
@@ -16,14 +16,14 @@ class PostForm < Hyperloop::Component
         BUTTON(class: 'btn btn-primary') { 'Save' }
         A(class: 'btn btn-light'){ 'Cancel' }.on(:click) do |evt|
           evt.prevent_default
-          params.on_cancel
+          params.on_finish
         end
       end
     end.on(:submit) do |evt|
       evt.prevent_default
       params.post.update(store.fields)
       .then do |r|
-        store_errors!(params.post)
+        r[:success] ? params.on_finish : store_errors!(params.post)
       end
     end
 
