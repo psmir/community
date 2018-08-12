@@ -4,6 +4,6 @@ class MyBlog < Hyperloop::Router::Component
 
     Link("#{match.url}/add_post", class: 'btn btn-primary') { "Add Post" }
     Route("#{match.url}/add_post", mounts: AddPost)
-    PostList()
+    MyPosts()
   end
 end

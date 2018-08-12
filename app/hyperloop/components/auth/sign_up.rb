@@ -23,10 +23,11 @@ class SignUp < Hyperloop::Router::Component
           evt.prevent_default
           SignUpOp.run(store.fields)
           .then do |r|
-            params.history.push('/')
-            store_errors!(r)
+            puts "$$$$ #{r.inspect}"
+            r[:success] ? params.history.push('/') : store_errors!(r[:errors])
           end
           .fail do |e|
+            puts "!!!! #{e.errors.message}"
             store_errors!(e)
           end
         end

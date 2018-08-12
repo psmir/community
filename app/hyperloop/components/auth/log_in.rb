@@ -21,7 +21,9 @@ class LogIn < Hyperloop::Router::Component
           evt.prevent_default
           LogInOp.run(store.fields)
           .then{ params.history.push('/') }
-          .fail { |e| store_errors! e }
+          .fail do |e|
+            store_errors! e
+          end
         end
       end
     end

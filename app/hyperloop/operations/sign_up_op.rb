@@ -1,8 +1,8 @@
 class SignUpOp < Hyperloop::ControllerOp
-  param :username, type: String
-  param :email, type: String
-  param :password, type: String
-  param :password_confirmation, type: String
+  param :username
+  param :email
+  param :password
+  param :password_confirmation
 
   step do
     @user = User.create(
@@ -14,10 +14,10 @@ class SignUpOp < Hyperloop::ControllerOp
   end
 
   step do
-    if @user.persisted?
-      AuthOp.run(email: params.email, password: params.password)
-    else
-      @user.errors
-    end
+    AuthOp.run(email: params.email, password: params.password) if @user.persisted?
+  end
+
+  step do
+    { success: @user.persisted?, errors: @user.errors }
   end
 end

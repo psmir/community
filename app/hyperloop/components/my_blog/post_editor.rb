@@ -1,4 +1,4 @@
-class PostItem < Hyperloop::Component
+class PostEditor < Hyperloop::Component
   include ViewHelpers
 
   param :post

@@ -7,6 +7,10 @@ class Header < Hyperloop::Router::Component
         A(class: 'navbar-brand', href: '/'){ 'Community' }
 
         UL(class: 'nav navbar-nav ml-auto') do
+          LI(class: 'nav-item') do
+            Link('/', class: 'nav-link') { 'Home' }
+          end
+
           if UserStore.current.present?
             LI(class: 'nav-item') do
               Link('/my_blog', class: 'nav-link') { 'My Blog' }

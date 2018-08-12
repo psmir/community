@@ -18,19 +18,8 @@ class FormStore < Hyperloop::Store
     mutate.fields.merge!(h)
   end
 
-
-  # can receive { 'some_field' => 'error' }
-  # or { 'some_field' => ['error1', 'error2'] }
-  # or from client side model save {"some_field"=>[{"message"=>"can't be blank"}] }
-
   def update_errors!(h = {})
-    mutate.errors({})
-    h.each do |k, v|
-      if v.is_a? Array
-        v = v.map{|i| i.is_a?(Hash) ? i.values.first : i  }.uniq.join('; ')
-      end
-      mutate.errors.merge!(k => v)
-    end
+    mutate.errors h
   end
 
   def clear_fields!
