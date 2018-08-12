@@ -37,10 +37,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 ####################################
 #gem 'hyperloop', '~> 0.5.8'
-#gem 'hyperloop', git: 'https://github.com/ruby-hyperloop/hyperloop.git', ref: '57d30ff'
+#gem 'hyperloop', git: 'https://github.com/ruby-hyperloop/hyperloop.git', ref: 'b6f0db1c8dd7725f452456d322fe27b2d84f0cde'
 gem "opal-jquery", git: "https://github.com/opal/opal-jquery.git", branch: "master"
 
-gem 'hyperloop', '~> 1.0.0.lap00'
+gem 'hyperloop', '~> 1.0.0.lap28'
 gem 'webpacker', '~> 3.5.3'
 gem 'bcrypt'
 

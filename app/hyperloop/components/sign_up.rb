@@ -22,8 +22,13 @@ class SignUp < Hyperloop::Router::Component
         end.on(:submit) do |evt|
           evt.prevent_default
           SignUpOp.run(store.fields)
-          .then { params.history.push('/') }
-          .fail { |e| store_errors!(e) }
+          .then do |r|
+            params.history.push('/')
+            store_errors!(r)
+          end
+          .fail do |e|
+            store_errors!(e)
+          end
         end
       end
     end

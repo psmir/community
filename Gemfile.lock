@@ -235,7 +235,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react-rails (2.4.6)
+    react-rails (2.4.7)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
@@ -297,7 +297,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   dotenv-rails (~> 2.5.0)
   foreman
-  hyperloop (~> 1.0.0.lap00)
+  hyperloop (~> 1.0.0.lap28)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   opal-jquery!

@@ -8,7 +8,9 @@ module FormCommon
   end
 
   def fetch_errors(e)
-    if e.is_a? Hyperloop::Operation::ValidationException
+    if e.is_a? Hash
+      e
+    elsif e.is_a? Hyperloop::Operation::ValidationException
       e.errors.message
     elsif e.is_a? Hyperloop::Operation::Exit
       e.result.try(:errors)
