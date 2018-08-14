@@ -7,3 +7,11 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+ReactDOM = require('react-dom');
+React = require('react');
+
+
+// for opal/hyperloop modules to find React and others they must explicitly be saved
+// to the global space, otherwise webpack will encapsulate them locally here
+global.React = React;
+global.ReactDOM = ReactDOM;

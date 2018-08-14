@@ -21,7 +21,7 @@ class PostItem < Hyperloop::Component
       end
     end
 
-    DIV(class: 'card-footer text-right', style: { 'min-height' => '4rem'}) do
+    DIV(class: 'card-footer text-right', style: { minHeight: '4rem'}) do
       if params.post.body.length > 300
         A(class: 'btn btn-primary') { state.expanded ? 'Narrow' : 'Expand' }
         .on(:click) do |evt|

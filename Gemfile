@@ -36,11 +36,17 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 ####################################
-#gem 'hyperloop', '~> 0.5.8'
-#gem 'hyperloop', git: 'https://github.com/ruby-hyperloop/hyperloop.git', ref: 'b6f0db1c8dd7725f452456d322fe27b2d84f0cde'
 gem "opal-jquery", git: "https://github.com/opal/opal-jquery.git", branch: "master"
-
-gem 'hyperloop', '~> 1.0.0.lap28'
+gem 'hyperloop', git: 'https://github.com/ruby-hyperloop/hyperloop.git', branch: 'edge'
+gem 'hyper-react', git: 'https://github.com/ruby-hyperloop/hyper-react.git', branch: 'edge'
+gem 'hyper-component', git: 'https://github.com/ruby-hyperloop/hyper-component.git', branch: 'edge'
+gem 'hyper-router', git: 'https://github.com/ruby-hyperloop/hyper-router.git', branch: 'edge'
+gem 'hyper-store', git: 'https://github.com/ruby-hyperloop/hyper-store.git', branch: 'edge'
+gem 'hyperloop-config', git: 'https://github.com/ruby-hyperloop/hyperloop-config.git', branch: 'edge'
+gem 'hyper-mesh', git: 'https://github.com/ruby-hyperloop/hyper-mesh.git', branch: 'edge'
+gem 'hyper-model', git: 'https://github.com/ruby-hyperloop/hyper-model.git', branch: 'edge'
+gem 'hyper-operation', git: 'https://github.com/ruby-hyperloop/hyper-operation.git', branch: 'edge'
+#gem 'hyperloop', '~> 1.0.0.lap28'
 gem 'webpacker', '~> 3.5.3'
 gem 'bcrypt'
 
