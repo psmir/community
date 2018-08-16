@@ -18,7 +18,7 @@ module FormCommon
     elsif e.is_a? Hyperloop::Operation::ValidationException
       e.errors.message
     elsif e.is_a? Hyperloop::Operation::Exit
-      e.result.try(:errors)
+      e.result.try(:errors).try(:messages) || e.result.try(:errors)
     elsif e.is_a? ApplicationRecord
       e.errors.messages
     else
@@ -30,12 +30,13 @@ module FormCommon
   # can receive { 'some_field' => 'error' }
   # or { 'some_field' => ['error1', 'error2'] }
   # or from the client side save method {"some_field"=>[{"message"=>"can't be blank"}] }
+  # and return { 'some_field' => 'error1; error2' }
   #
   def format_errors(h)
     h.transform_values do |v|
       if v.is_a? Array
         v = v.map do |i|
-          i.is_a?(Hash) ? i.values.uniq.join(', ') : i
+          i.is_a?(Hash) ? i.values.uniq.join('; ') : i
         end.uniq.join('; ')
       end
       v

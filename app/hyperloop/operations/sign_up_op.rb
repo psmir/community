@@ -14,10 +14,13 @@ class SignUpOp < Hyperloop::ControllerOp
   end
 
   step do
-    AuthOp.run(email: params.email, password: params.password) if @user.persisted?
+    if @user.persisted?
+      AuthOp.run(controller: params.controller, email: params.email, password: params.password)
+    end
   end
 
   step do
     { success: @user.persisted?, errors: @user.errors }
   end
+
 end

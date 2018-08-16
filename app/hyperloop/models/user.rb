@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates_presence_of :username
 
+
   def self.current
     Hyperloop::Application.acting_user_id ? find(Hyperloop::Application.acting_user_id) : nil
   end
