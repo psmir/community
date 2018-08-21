@@ -8,7 +8,7 @@ class PostItem < Hyperloop::Component
   render(DIV, class: 'card m-5') do
     DIV(class: 'card-header') do
       H2(class: 'card-title'){ params.post.title }
-      "Posted By #{params.post.user.username} at #{params.post.created_at(:short)}"
+      "Posted By #{params.post.try(:user).try(:username)} at #{params.post.created_at(:short)}"
     end
 
     DIV(class: 'card-body') do
