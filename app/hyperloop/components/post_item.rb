@@ -5,7 +5,7 @@ class PostItem < Hyperloop::Component
 
   state expanded: false
 
-  render(DIV, class: 'card m-5') do
+  render(DIV, class: 'card mt-5 mb-5') do
     DIV(class: 'card-header') do
       H2(class: 'card-title'){ params.post.title }
       SPAN{"Posted By #{params.post.try(:user).try(:username)} "}
