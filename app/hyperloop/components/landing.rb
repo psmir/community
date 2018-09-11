@@ -1,5 +1,4 @@
 class Landing < Hyperloop::Router::Component
-
   render(SECTION) do
     DIV(class: 'container') do
       DIV(class: 'row viewport-80') do

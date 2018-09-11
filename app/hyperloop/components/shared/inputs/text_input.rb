@@ -3,7 +3,8 @@ class TextInput < Hyperloop::Component
 
   render(DIV, class: 'form-group') do
     INPUT(class: "form-control #{error.present? ? 'is-invalid' : ''}",
-      placeholder: params.placeholder, value: value
+      placeholder: params.placeholder, value: value,
+      name: params.name
     )
     .on(:change) do |e|
       change(e.target.value)

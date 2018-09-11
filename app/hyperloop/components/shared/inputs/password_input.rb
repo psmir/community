@@ -3,7 +3,8 @@ class PasswordInput < Hyperloop::Component
 
   render(DIV, class: 'form-group') do
     INPUT(class: "form-control #{error.present? ? 'is-invalid' : ''}",
-      placeholder: params.placeholder, value: value, type: 'password'
+      placeholder: params.placeholder, value: value, type: 'password',
+      name: params.name
     )
     .on(:change) do |e|
       change(e.target.value)

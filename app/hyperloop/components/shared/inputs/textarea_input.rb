@@ -5,7 +5,8 @@ class TextareaInput < Hyperloop::Component
 
   render(DIV, class: 'form-group') do
     TEXTAREA(class: "form-control #{error.present? ? 'is-invalid' : ''}",
-      placeholder: params.placeholder, value: value, rows: params.rows
+      placeholder: params.placeholder, value: value, rows: params.rows,
+      name: params.name
     )
     .on(:change) do |e|
       change(e.target.value)
