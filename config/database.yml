@@ -16,6 +16,11 @@ test:
   host: localhost
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password:
+  pool: 5
+  host: db
   database: community_production
 
