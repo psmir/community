@@ -1,0 +1,14 @@
+.git
+.gitignore
+README.md
+
+.env
+.env.sample
+
+log
+tmp
+
+.ruby-version
+.ruby-gemset
+
+.rvmrc
