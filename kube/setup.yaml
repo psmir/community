@@ -10,24 +10,15 @@ spec:
       containers:
       - name: setup
         image: psmir/community_app:latest
-        args: ["rake db:create && rake db:migrate"]
+        command: ["/bin/sh"]
+        args: ["-c", "rake db:migrate"]
         env:
-        - name: DATABASE_NAME
-          value: "community_production"
-        - name: DATABASE_URL
-          value: "postgres"
-        - name: DATABASE_PORT
-          value: 5432
         - name: DATABASE_USER
-          valueFrom:
-            secretKeyRef:
-              name: "db-user"
-              key: "username"
+          value: "community_user"
         - name: DATABASE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: "db-user-pass"
-              key: "password"       
-        - name: RAILS_APP
+          value: "mysecretpass"   
+        - name: RAILS_ENV
+          value: "production"    
+        - name: RACK_ENV
           value: "production"    
       restartPolicy: Never

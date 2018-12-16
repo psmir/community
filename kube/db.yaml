@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: db
   labels:
     app: community
 spec:
@@ -9,12 +9,12 @@ spec:
     - port: 5432
   selector:
     app: community
-    tier: postgres
+    tier: db
 ---
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgres-pv
+  name: db-pv
 spec:
   capacity:
     storage: 2Gi
@@ -28,7 +28,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: postgres-pvc
+  name: db-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -40,45 +40,40 @@ spec:
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: postgres
+  name: db
   labels:
     app: community
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     app: community
-    tier: postgres
+    tier: db
   template:
     metadata:
-      name: postgres
+      name: db
       labels:
         app: community
-        tier: postgres
+        tier: db
     spec:
       volumes:
-      - name: postgres-pv
+      - name: db-pv
         persistentVolumeClaim:
-          claimName: postgres-pvc
+          claimName: db-pvc
       containers:
-      - name: postgres
-        image: postgres:9.6-alpine
+      - image: postgres:9.5.3
+        name: db
         env:
         - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: db-user
-              key: username
+          value: "community_user"
         - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-user-pass
-              key: password
+          value: "mysecretpass"
         - name: POSTGRES_DB
           value: community_production
         - name: PGDATA
-          value: /var/lib/postgresql/data
+          value: /var/lib/postgresql/data/pgdata
         ports:
         - containerPort: 5432
+          name: db
         volumeMounts:
         - mountPath: "/var/lib/postgresql/data"
-          name: postgres-pv
+          name: db-pv

@@ -16,7 +16,7 @@ kind: ReplicationController
 metadata:
   name: app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     app: community
     tier: rails
@@ -30,27 +30,16 @@ spec:
       containers:
       - name: rails
         image: psmir/community_app:latest
-        args: ["rails s -p 3000 -b 0.0.0.0"]
         env:
-        - name: DATABASE_URL
-          value: "postgres"
-        - name: DATABASE_NAME
-          value: "community_production"
-        - name: DATABASE_PORT
-          value: "5432"
         - name: DATABASE_USER
-          valueFrom:
-            secretKeyRef:
-              name: "db-user"
-              key: "username"
+          value: "community_user"
         - name: DATABASE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: "db-user-pass"
-              key: "password"         
+          value: "mysecretpass"
         - name: ACTION_CABLE_URL
           value: "ws://community.com/cable"
-        - name: ATION_CABLE_ALLOWED_REQUEST_ORIGINS
+        - name: ACTION_CABLE_ALLOWED_REQUEST_ORIGINS
           value: "http://community.com|http://localhost"
+        - name: RAILS_ENV
+          value: "production"
         ports:
         - containerPort: 3000
