@@ -18,10 +18,6 @@ RUN mkdir -p $RAILS_ROOT
 # Set working directory
 WORKDIR $RAILS_ROOT
 
-# Setting env up
-ENV RAILS_ENV='production'
-ENV RACK_ENV='production'
-
 # Adding gems
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
@@ -33,4 +29,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["bundle", "exec", "rails", "server", "-p", "3000"]
+CMD ["/bin/sh", "-c", "bundle exec rails server -p 3000 -b 0.0.0.0"]

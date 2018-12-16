@@ -2,9 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['COMMUNITY_DATABASE_USER'] %>
-  password: <%= ENV['COMMUNITY_DATABASE_PASSWORD'] %>
-
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: 5432
 development:
   <<: *default
   database: community_development
@@ -16,11 +16,7 @@ test:
   host: localhost
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  username: postgres
-  password:
-  pool: 5
+  <<: *default
   host: db
   database: community_production
 

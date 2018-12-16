@@ -4,28 +4,39 @@ volumes:
   postgres_data: {}
 
 services:
-  app_setup: 
+  app_setup:
     build:
       context: .
       dockerfile: ./docker/app/DockerFile
     entrypoint: ./setup.sh
     depends_on:
       - db
+    environment:
+      - RAILS_ENV=production
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=secret
   app:
     restart: always
     build:
       context: .
       dockerfile: ./docker/app/DockerFile
     depends_on:
-      - app_setup  
+      - app_setup
     environment:
+      - RAILS_ENV=production
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=secret
       - ACTION_CABLE_URL=ws://community.com/cable
       - ACTION_CABLE_ALLOWED_REQUEST_ORIGINS=http://community.com|http://localhost
     volumes:
       - ./app:/var/www/community/app
       - ./public:/var/www/community/public
   db:
-    image: postgres
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=community_production
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
