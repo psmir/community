@@ -176,9 +176,11 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.5.1)
     mini_racer (0.1.15)
       libv8 (~> 6.3)
     minitest (5.11.3)
@@ -187,8 +189,9 @@ GEM
     mutations (0.8.3)
       activesupport
     nio4r (2.3.1)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.11.4)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     opal (0.11.3)
       ast (>= 2.3.0)
       hike (~> 1.2)
@@ -219,6 +222,7 @@ GEM
     pg (0.18.4)
     public_suffix (3.0.3)
     puma (3.12.0)
+    racc (1.5.2)
     rack (2.0.5)
     rack-proxy (0.6.5)
       rack
